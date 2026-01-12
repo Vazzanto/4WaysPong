@@ -911,7 +911,7 @@ MonoBehaviour:
   RedPointCounter: {fileID: 2011787891}
   PurlePointCounter: {fileID: 570134561}
   GreenPointCounter: {fileID: 290205952}
-  VictoryText: {fileID: 0}
+  VictoryText: {fileID: 933218995}
 --- !u!4 &1083366097
 Transform:
   m_ObjectHideFlags: 0
