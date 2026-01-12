@@ -1,8 +1,12 @@
+using Assets.Scripts.UtilityScripts;
+using System;
 using UnityEngine;
 
 public class DoorBehaviour : MonoBehaviour
 {
     private GameManager gameManager;
+    public static event Action<Player> OnGoalScored;
+    public PlayerColorEnum netColor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,7 +21,11 @@ public class DoorBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.gameObject.SetActive(false);
-        gameManager.bluPlayerPoints++;
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            var ball = collision.GetComponent<BallPlayerTouchHandler>();
+            var playerScorer = ball.lastPlayerTouch.FirstOrDefault(x => x.selectedPlayer != this.netColor);
+            OnGoalScored(playerScorer);
+        }
     }
 }
